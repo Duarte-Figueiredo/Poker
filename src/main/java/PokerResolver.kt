@@ -1,6 +1,8 @@
 object PokerResolver {
 
     fun solve(cards: List<Int>): String {
+        validateCards(cards)
+
         val cardCount = getCount(cards)
 
         return when (cardCount.size) {
@@ -9,6 +11,17 @@ object PokerResolver {
             3 -> getTrioOrTwoPairs(cardCount)
             2 -> getFullHouseOrFourOfAKind(cardCount)
             else -> throw RuntimeException("Invalid size ${cardCount.size}")
+        }
+    }
+
+    private fun validateCards(cards: List<Int>) {
+        val size = cards.size
+
+        if (size != 5)
+            throw throw RuntimeException("Invalid size $size")
+
+        cards.firstOrNull { it < 1 || it > 13 }?.let {
+            throw RuntimeException("Invalid card: $it")
         }
     }
 

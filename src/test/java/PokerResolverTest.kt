@@ -4,7 +4,7 @@ import org.junit.Test
 class PokerResolverTest {
 
     @Test
-    fun solve() {
+    fun `On valid input returns correct answer`() {
         listOf(
                 Pair(listOf(1, 2, 3, 4, 5), "Highest card :5"),
                 Pair(listOf(1, 2, 13, 4, 5), "Highest card :13"),
@@ -16,8 +16,23 @@ class PokerResolverTest {
         ).forEach { (input, expected) ->
             val actual = PokerResolver.solve(input)
 
-            Assert.assertEquals("Expected $input to $expected",expected, actual)
+            Assert.assertEquals("Expected $input to $expected", expected, actual)
         }
 
+    }
+
+    @Test
+    fun `On invalid input throws exception`() {
+        listOf(
+                listOf(1, 2, 3, 4, 55),
+                listOf(1, 2, 3, 4, 5, 5)
+        ).forEach { input ->
+
+            val result = kotlin.runCatching {
+                PokerResolver.solve(input)
+            }
+
+            Assert.assertTrue(result.isFailure)
+        }
     }
 }
