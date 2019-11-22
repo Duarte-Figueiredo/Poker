@@ -7,6 +7,9 @@ public class PokerJavaResolver {
     private static final int CARD_MIN = 1;
 
     static String solve(List<Integer> cards) {
+        if (!ValidateCards(cards))
+            throw new RuntimeException("Invalid input");
+
         List<Integer[]> cardCount = getCount(cards);
 
         switch (cardCount.size()) {
@@ -106,10 +109,10 @@ public class PokerJavaResolver {
         }
     }
 
-    private static boolean ValidateCards(int[] cards) {
+    private static boolean ValidateCards(List<Integer> cards) {
         if (cards == null)
             return false;
-        else if (cards.length != 5)
+        else if (cards.size() != 5)
             return false;
 
         for (int card : cards) {
