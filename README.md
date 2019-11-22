@@ -1,4 +1,4 @@
-# Poker
+# Poker Resolver
 Given an input representing cards, output the correct hand:
 1. Highest card
 2. Two of a Kind
