@@ -18,7 +18,7 @@ object PokerKotlinResolver {
         val size = cards.size
 
         if (size != 5)
-            throw throw RuntimeException("Invalid size $size")
+            throw RuntimeException("Invalid size $size")
 
         cards.firstOrNull { it < 1 || it > 13 }?.let {
             throw RuntimeException("Invalid card: $it")
