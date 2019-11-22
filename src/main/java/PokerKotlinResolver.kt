@@ -1,4 +1,4 @@
-object PokerResolver {
+object PokerKotlinResolver {
 
     fun solve(cards: List<Int>): String {
         validateCards(cards)

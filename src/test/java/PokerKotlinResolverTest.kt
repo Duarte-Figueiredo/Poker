@@ -1,7 +1,7 @@
 import org.junit.Assert
 import org.junit.Test
 
-class PokerResolverTest {
+class PokerKotlinResolverTest {
 
     @Test
     fun `On valid input returns correct answer`() {
@@ -14,7 +14,7 @@ class PokerResolverTest {
                 Pair(listOf(4, 6, 4, 6, 4), "Full House of 3 :4 and 2 :6"),
                 Pair(listOf(8, 8, 8, 6, 8), "Four of :8")
         ).forEach { (input, expected) ->
-            val actual = PokerResolver.solve(input)
+            val actual = PokerKotlinResolver.solve(input)
 
             Assert.assertEquals("Expected $input to $expected", expected, actual)
         }
@@ -29,7 +29,7 @@ class PokerResolverTest {
         ).forEach { input ->
 
             val result = kotlin.runCatching {
-                PokerResolver.solve(input)
+                PokerKotlinResolver.solve(input)
             }
 
             Assert.assertTrue(result.isFailure)
