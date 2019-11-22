@@ -65,7 +65,7 @@ public class PokerJavaResolver {
             return "Pair of :" + value;
         }
 
-        throw new RuntimeException(("Invalid State"));
+        throw new RuntimeException("Invalid State");
     }
 
     private static String getTrioOrTwoPairs(List<Integer[]> cardCount) {
