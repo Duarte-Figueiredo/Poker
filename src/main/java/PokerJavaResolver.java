@@ -39,6 +39,7 @@ public class PokerJavaResolver {
 
         for (Integer card : cardHashMap.keySet()) {
             Integer[] cardPair = new Integer[2];
+
             cardPair[0] = card;
             cardPair[1] = cardHashMap.get(card);
 
@@ -49,7 +50,8 @@ public class PokerJavaResolver {
     }
 
     private static String getHighestCard(List<Integer[]> cardCount) {
-        Optional<Integer[]> max = cardCount.stream()
+        Optional<Integer[]> max = cardCount
+                .stream()
                 .max(Comparator.comparing(i -> i[0]));
 
         if (max.isPresent()) {
@@ -60,7 +62,9 @@ public class PokerJavaResolver {
     }
 
     private static String getSimplePair(List<Integer[]> cardCount) {
-        Optional<Integer[]> max = cardCount.stream().max(Comparator.comparing(i -> i[1]));
+        Optional<Integer[]> max = cardCount
+                .stream()
+                .max(Comparator.comparing(i -> i[1]));
 
         if (max.isPresent()) {
             int value = max.get()[0];
@@ -74,8 +78,8 @@ public class PokerJavaResolver {
     private static String getTrioOrTwoPairs(List<Integer[]> cardCount) {
         List<Integer[]> max = cardCount
                 .stream()
-                .sorted(Comparator.comparing(i -> i[1]))
                 .filter(i -> i[1] > 1)
+                .sorted(Comparator.comparing(i -> i[1]))
                 .collect(Collectors.toList());
 
         int size = max.size();
