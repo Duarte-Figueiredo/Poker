@@ -62,17 +62,12 @@ public class PokerJavaResolver {
     }
 
     private static String getSimplePair(List<Integer[]> cardCount) {
-        Optional<Integer[]> max = cardCount
+        Integer[] max = cardCount
                 .stream()
-                .max(Comparator.comparing(i -> i[1]));
+                .max(Comparator.comparing(i -> i[1]))
+                .orElseThrow(() -> new RuntimeException("Invalid State"));
 
-        if (max.isPresent()) {
-            int value = max.get()[0];
-
-            return "Pair of :" + value;
-        }
-
-        throw new RuntimeException("Invalid State");
+        return "Pair of :" + max[0];
     }
 
     private static String getTrioOrTwoPairs(List<Integer[]> cardCount) {
